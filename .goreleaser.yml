@@ -1,0 +1,6 @@
+project_name: protoc-gen-go-csv
+build:
+  skip: true
+release:
+  github: https://github.com/gnagel/protoc-gen-go-csv
+  prerelease: auto
