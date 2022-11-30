@@ -1,0 +1,15 @@
+syntax = "proto3";
+package gen_bq_schema;
+
+option go_package = "github.com/gnagel/protoc-gen-go-csv/protos";
+
+import "google/protobuf/descriptor.proto";
+
+// Message containing options related to CSV schema generation and management via Protobuf.
+message CSVFileOptions {
+}
+
+extend google.protobuf.FieldOptions {
+  // CSV file generation options.
+  CSVFileOptions csv_opts = 7776;
+}

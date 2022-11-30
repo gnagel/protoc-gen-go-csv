@@ -1,0 +1,38 @@
+syntax = "proto3";
+package gen_bq_schema;
+
+option go_package = "github.com/gnagel/protoc-gen-go-csv/protos";
+
+import "google/protobuf/descriptor.proto";
+
+// Message containing options related to CSV schema generation and management via Protobuf.
+message CSVFieldOptions {
+  // Flag to specify that a field should be marked as 'REQUIRED' when used to generate schema for CSV.
+  bool require = 1;
+
+  // Optionally omit a field from CSV schema.
+  bool ignore = 2;
+
+  // Optionally override whatever type is resolved by the schema generator.
+  // This is useful, for example, to store epoch timestamps with the underlying 'TIMESTAMP' type,
+  // when normally, they would be structured as 'INTEGER' fields.
+  string type_override = 3;
+
+  // Optionally set a format string for parsing the value, eg timestamp format
+  string format = 4;
+
+  // Optional setting for parsing int, float, and complex numbers
+  int32 bit_size = 5;
+
+  // Optional setting for parsing int, float, and complex numbers
+  int32 base = 6;
+
+  // Customize the name of the field in the CSV schema.
+  // If this is not set we use the name of the field in the proto instead.
+  string name = 7;
+}
+
+extend google.protobuf.FieldOptions {
+  // CSV field schema generation options.
+  CSVFieldOptions csv = 7777;
+}
